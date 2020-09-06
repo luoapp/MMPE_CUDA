@@ -6,5 +6,6 @@ community.[1] This model was based on the split-step Fourier (SSF) technique[2],
 been adapted from previous versions developed by Fred Tappert at the University of
 Miami. A subsequent version, known as the Monterey-Miami Parabolic Equation
 (MMPE) Model, was developed in the mid-90’s that was more streamlined and userfriendly. 
+https://oalib-acoustics.org/PE/MMPE/Smith_Wolfson_vanLeijen_TechReport.pdf
 
 For my master's work, I (Jing Luo) added the CUDA GPU acceleration to the code, which can speed up the simulation to 10x. 
