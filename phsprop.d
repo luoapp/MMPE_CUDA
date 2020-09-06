@@ -1,0 +1,1 @@
+"phsprop.obj" : ".\phsprop.f" 

@@ -1,0 +1,43 @@
+C
+C     This subroutine generates the complex environmental propagator function,
+C     envprop(z,r)=exp(-i*dr*k0*(1-n(z,r))) where n(z,r) is the index of
+C     refraction computed from the environmental inputs (and effective values
+C     due to density contrasts).  The 1/4 space filter is also defined and is
+C     used as both the deep bottom sponge and the high-angle k-space filter.
+
+C     Note envprop2=envprop(z,dr/2).
+
+C     Environmental inputs are as follows:  rss(nss) are the ranges [km] of nss
+C     sound speed profiles defined at nssd(nss) depths ssd(nssd(nss),nss) [m]
+C     with sound speed values ss(nssd(nss),nss) [m/s].  If only one value is
+C     given, the medium is homogeneous.  If only one value in depth is given,
+C     that profile has a constant sound speed.  If more than one value in depth
+C     is given, the profile is extended to the maximum computational depth (if
+C     necessary) using the gradient between the last two values in depth.
+C
+C     Two bottom types may be input with at least one bottom interface required.
+C     The ranges and depths of the first bottom (assumed to be the water/bottom
+C     interface) are defined by rb(nb) [km] and bd(nb) [m], respectively.  The
+C     optional deep bottom interface ranges and depths are rdb(ndb) [km] and
+C     dbd(ndb) [m], respectively.  Each bottom type may have its own range-
+C     independent or range- dependent parameters specified.  Parameters to be
+C     defined are range, rbp(nbp) [km], sound speed, bss(nbp) [m/s], sound speed
+C     gradient, bg(nbp) [1/s], compressional loss, blkm(nbp) [dB/km/Hz],
+C     density, bden(nbp) [g/cc] (assumes water has density 1.0 g/cc), shear wave
+C     speed, bsws(nbp) [m/s], and shear wave loss, bswlkm(nbp) [dB/km/Hz].
+C     Similar parameters may be defined for the deep bottom layer at ranges
+C     rdbp(ndbp) [km].
+
+C     NOTE:  If more than one range profile of any parameter is input, even if
+C     the profiles are identical, the environment will be treated as range-
+C     dependent and this propagator function will be recomputed at every range
+C     step.
+
+C     NOTE:  Current restrictions on the number of environmental input data may
+C     be easily changed by altering the array size specifications.
+
+C     NOTE:  This version only reads a single radial from the environmental
+C     data files.  To use more than one radial, use other version of MMPE.
+
+C
+C

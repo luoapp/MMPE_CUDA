@@ -1,0 +1,46 @@
+C	implicit none      
+      REAL*4 envr(32768),counter(100)
+	REAL*4 envi(32768),envr2(32768),envi2(32768),filt(32768)
+      REAL*4 ss(512,251),ssd(512,251),rss(251)
+      REAL*4 rb(251),bd(251),rbp(101),bss(101),bg(101),
+     & blkm(101),bl(101),bden(101),bsws(101),bswlkm(101),bswl(101)
+      REAL*4 rdb(101),dbd(101),rdbp(101),dbss(101),dbg(101),
+     & dblkm(101),dbl(101),dbden(101),dbsws(101),dbswlkm(101),dbswl(101)
+      REAL*4 ss1(32768),ss2(32768),ssint(32768+100)
+	  real*4 ang(32768),aloss(32768)
+      REAL*4 etas(32768),detas(32768),d2etas(32768)
+      REAL*4 eqbl,eqdbl
+      INTEGER*4 nssda(251),nrgpt
+
+	integer,save:: idb,iss
+	save:: rdb,rss
+C----------------------------------------------------
+
+	integer, device, dimension(1) :: nz2_d
+	real, device, dimension(1) :: dz_d, ALPHA0_d, bdint_d, dbdint_d,
+     &bssint_d,
+     &bgint_d,blint_d,wvln_d,ub0_d,depcalc_d,dbssint_d,dblint_d,
+     &udb0_d,dbgint_d,ang_d,aloss_d,c0_d,
+     &dr_d,fk0_d,rsint_d,rsdot2int_d,fss_d
+	  real, device, dimension(32768)::filt_d
+	  real, device, dimension(32768)::envi_d,envr_d
+	  real, device, dimension(32768)::envr2_d,envi2_d
+	  real, device, dimension(32768)::ss1_d,ss2_d
+	  real, device::ssint_d(32768+100)
+	  
+	  real, allocatable, device::test_d(:)
+	  real, allocatable::test(:)
+
+c	  integer,allocatable, device :: nz2_d(:)
+c	  real, allocatable,device::dz_d(:),ALPHA0_d(:),bdint_d(:),dbdint_d(:),bssint_d(:),
+c     &bgint_d(:),ssint_d(:),blint_d(:),wvln_d(:),ub0_d(:),depcalc_d(:),dbssint_d(:),dblint_d(:),
+c     &udb0_d(:),dbgint_d(:),ang_d(:),aloss_d(:),filt_d(:),envr_d(:),envi_d(:),envr2_d(:),envi2_d(:),
+c     &c0_d(:),dr_d(:),fk0_d(:),rsint_d(:),rsdot2int_d(:),test_d(:)
+c	  real, allocatable::test(:)
+	  integer :: griddim, blockdim, istat, envinit
+C	  REAL*4 :: cudaTime
+C	  type(cudaEvent) :: startEvent, stopEvent
+C----------------------------------------------------
+      COMMON nz,ns,dz,dk,dr,rng,freq,c0,sd,arl,thc,depcalc,bdint,dbdint,
+     &irad,nrad,drad,rngmax,rsint,rsdotint
+	  

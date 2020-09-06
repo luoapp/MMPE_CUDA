@@ -1,0 +1,11 @@
+      type envprop_type
+        real*4:: sigsmax,dr
+        real::a(2)
+        real:: etas(32768),detas(32768),d2etas (32768)
+        real:: fk0,freq,depcalc
+        real:: bd(251),bss(101),bg(101),blkm(101),bl(101)
+        real:: bden(101),bsws(101),bswlkm(101),bswl(101)
+        real:: rdb(101),dbd(101),rdbp(101),dbss(101),dbg(101)
+        real:: dblkm(101),dbl(101),dbden(101),dbsws(101)
+        real:: dbswlkm(101),dbswl(101),dz 
+      end type envprop_type
